@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, BigInteger, Integer, DateTime, ForeignKey, Sequence, Table
+from sqlalchemy import Column, String, BigInteger, Integer, DateTime, ForeignKey, Sequence, Table, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -7,6 +7,7 @@ BaseModel = declarative_base()
 unitedSequence = Sequence('all_id_seq')
 
 #mezitabulky
+
 StudyGroup_Subject = Table('subject_study_groups', BaseModel.metadata,
                            Column('subject_id', ForeignKey('subject.id'), primary_key=True),
                            Column('study_group_id', ForeignKey('study_group.id'), primary_key=True)
@@ -22,9 +23,9 @@ Examiner_Exam = Table('examiner_groups', BaseModel.metadata,
                       Column('examiner_id', ForeignKey('user.id'), primary_key=True)
                       )
 
-
+#Zkouska
 class ExamModel(BaseModel):
-    __table_name__ = 'exam'
+    __tablename__ = 'exam'
     id = Column(BigInteger, Sequence('all_id_seq'), primary_key=True)
     id_subject = Column(BigInteger, ForeignKey('subject.id'))
     name = Column(String)
@@ -38,9 +39,9 @@ class ExamModel(BaseModel):
     students = relationship('UserModel', secondary=Student_Exam, back_populates='exams')
     examiners = relationship('UserModel', secondary=Examiner_Exam, back_populates='exams')
 
-
+#Uzivatel
 class UserModel(BaseModel):
-    __table_name__ = 'user'
+    __tablename__ = 'user'
 
     id = Column(BigInteger, Sequence('all_id_seq'), primary_key=True)
     id_authorization = Column(BigInteger, ForeignKey('authorization.id'))
@@ -56,30 +57,35 @@ class UserModel(BaseModel):
     exams_student = relationship('ExamModel', secondary=Student_Exam, back_populates='students')
     exams_examiners = relationship('ExamModel', secondary=Examiner_Exam, back_populates='examiners')
 
-
+#Opravneni
 class AuthorizationModel(BaseModel):
-    __table_name__ = 'authorization'
+    __tablename__ = 'authorization'
 
     id = Column(BigInteger, Sequence('all_id_seq'), primary_key=True)
-    web_admin = Column(bool)
-    student = Column(bool)
-    examiner = Column(bool)
+    web_admin = Column(Boolean)
+    student = Column(Boolean)
+    examiner = Column(Boolean)
 
     users = relationship('UserModel', back_populates='authorization')
 
-
+#Studijni_skupina
 class StudyGroupModel(BaseModel):
-    __table_name__ = 'study_group'
+    __tablename__ = 'study_group'
     id = Column(BigInteger, Sequence('all_id_seq'), primary_key=True)
     name = Column(String)
 
     users = relationship('UserModel', back_populates='study_group')
 
-
+#Predmet
 class SubjectModel(BaseModel):
-    __table_name__ = 'subject'
+    __tablename__ = 'subject'
     id = Column(BigInteger, Sequence('all_id_seq'), primary_key=True)
     id_study_group = Column(BigInteger, ForeignKey('study_group.id'))
     name = Column(String)
 
     exams = relationship('ExamModel', secondary=StudyGroup_Subject, back_populates='subject')
+
+#Funkce
+
+
+#generatory nahodnych struktur = "demo data" pro demosntraci api
