@@ -1,3 +1,3 @@
 # ProjectDatabase
-1.
+
 Zpracovali: des. Lenka Blažková a des. Filip Raczek
