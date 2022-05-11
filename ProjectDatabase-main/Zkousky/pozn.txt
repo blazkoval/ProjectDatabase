@@ -3,7 +3,6 @@ primarni klic - to prvni (id_)
 1 = jeden zápis
 když je mnoho na mnoho -> zavést dodatečnou tabulku - nesou id hlavních tabulek (propojení)
 tabulka na opravneni - pro ty co delaji webovky
-atribut max_kapacita = počet studentu, kteri se mohou prihlasit
 
 foreignKey = klic (id) ktere si bere z jine tabulky
 
