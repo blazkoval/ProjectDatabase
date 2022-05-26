@@ -10,3 +10,11 @@ co dal?:
  jde upolad na server? na cem vyzkouset?
  naplnit random data na vyzkouseni
  prikazy na vytahovani dat - CRUD ops, Sessions
+
+Přetransformovat notebook ipynb na program
+Vyvtořit dockerfile na: https://github.com/hrbolek/_uois/blob/master/pyf/Dockerfile
+bude mi to házet chyby ale neva
+přejmenovat mainjl.py na main.py
+
+Vytvořit https://github.com/hrbolek/_uois/blob/master/docker-compose.yml 
+    přepsat na svůj program
