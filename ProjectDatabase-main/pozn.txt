@@ -13,6 +13,7 @@ co dal?:
 
 Přetransformovat notebook ipynb na program
 Vyvtořit dockerfile na: https://github.com/hrbolek/_uois/blob/master/pyf/Dockerfile
+
 bude mi to házet chyby ale neva
 přejmenovat mainjl.py na main.py
 
