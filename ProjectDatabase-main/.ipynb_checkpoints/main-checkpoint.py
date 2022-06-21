@@ -254,7 +254,11 @@ graphql_app = GraphQLApp(
     on_get=make_graphiql_handler())
 
 app = FastAPI()#root_path='/api')
+
+#defineStartupAndShutdown(app, SessionMaker)
+
 app.add_route('/gql/', graphql_app, methods=["POST"])
+
 @app.get('/gql/', response_class=fastapi.responses.HTMLResponse)
 def swapiUI():
     return getSwapi()
